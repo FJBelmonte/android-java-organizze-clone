@@ -1,5 +1,8 @@
 package com.coffeit.organizze;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 
@@ -33,5 +36,20 @@ public class MainActivity extends IntroActivity {
             .fragment(R.layout.intro_4)
             .build()
     );
+    addSlide(new FragmentSlide.Builder()
+            .background(android.R.color.white)
+            .fragment(R.layout.intro_cadastro)
+            .canGoForward(false)
+            .build()
+    );
     }
+
+    public void btnEntrar(View view){
+    startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    public void btnCadastrar(View view){
+        startActivity(new Intent(this, CadastroActivity.class));
+    }
+
 }
