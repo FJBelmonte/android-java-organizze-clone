@@ -22,30 +22,30 @@ public class MainActivity extends IntroActivity {
         .build()
     );
     addSlide(new FragmentSlide.Builder()
-            .background(android.R.color.white)
-            .fragment(R.layout.intro_2)
-            .build()
+        .background(android.R.color.white)
+        .fragment(R.layout.intro_2)
+        .build()
     );
     addSlide(new FragmentSlide.Builder()
-            .background(android.R.color.white)
-            .fragment(R.layout.intro_3)
-            .build()
+        .background(android.R.color.white)
+        .fragment(R.layout.intro_3)
+        .build()
     );
     addSlide(new FragmentSlide.Builder()
-            .background(android.R.color.white)
-            .fragment(R.layout.intro_4)
-            .build()
+        .background(android.R.color.white)
+        .fragment(R.layout.intro_4)
+        .build()
     );
     addSlide(new FragmentSlide.Builder()
-            .background(android.R.color.white)
-            .fragment(R.layout.intro_cadastro)
-            .canGoForward(false)
-            .build()
+        .background(android.R.color.white)
+        .fragment(R.layout.intro_cadastro)
+        .canGoForward(false)
+        .build()
     );
     }
 
     public void btnEntrar(View view){
-    startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     public void btnCadastrar(View view){
