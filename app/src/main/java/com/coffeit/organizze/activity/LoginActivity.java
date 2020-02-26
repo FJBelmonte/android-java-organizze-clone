@@ -1,14 +1,16 @@
-package com.coffeit.organizze;
+package com.coffeit.organizze.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class CadastroActivity extends AppCompatActivity {
+import com.coffeit.organizze.R;
+
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro);
+        setContentView(R.layout.activity_login);
     }
 }

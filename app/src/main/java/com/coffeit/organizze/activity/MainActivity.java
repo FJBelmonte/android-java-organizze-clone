@@ -1,8 +1,11 @@
-package com.coffeit.organizze;
+package com.coffeit.organizze.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.coffeit.organizze.R;
+import com.coffeit.organizze.activity.CadastroActivity;
+import com.coffeit.organizze.activity.LoginActivity;
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 
