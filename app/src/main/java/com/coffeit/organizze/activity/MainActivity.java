@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.coffeit.organizze.R;
-import com.coffeit.organizze.config.configFirebase;
+import com.coffeit.organizze.config.ConfigFirebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
@@ -64,7 +64,7 @@ public class MainActivity extends IntroActivity {
     }
 
     public void UserExists() {
-        auth = configFirebase.getFirebaseAuth();
+        auth = ConfigFirebase.getFirebaseAuth();
         if (auth.getCurrentUser() != null) {
             NavigateHome();
         }

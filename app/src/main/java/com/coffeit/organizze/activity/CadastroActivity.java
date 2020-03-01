@@ -10,7 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.coffeit.organizze.R;
-import com.coffeit.organizze.config.configFirebase;
+import com.coffeit.organizze.config.ConfigFirebase;
+import com.coffeit.organizze.helper.Base64Custom;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -63,11 +64,13 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     public void cadastrarUsuario() {
-        auth = configFirebase.getFirebaseAuth();
+        auth = ConfigFirebase.getFirebaseAuth();
         auth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    String idUsuario = Base64Custom.encode64(user.getEmail());
+                    user.setIdUser(idUsuario);
                     //Toast.makeText(CadastroActivity.this, "Sucesso  ao cadastrar usuário", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {

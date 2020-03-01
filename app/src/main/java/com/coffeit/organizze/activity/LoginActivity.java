@@ -16,11 +16,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.coffeit.organizze.config.configFirebase;
+import com.coffeit.organizze.config.ConfigFirebase;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -60,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     public void ValidateLogin(){
-        auth = configFirebase.getFirebaseAuth();
+        auth = ConfigFirebase.getFirebaseAuth();
         auth.signInWithEmailAndPassword(user.getEmail(),user.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
