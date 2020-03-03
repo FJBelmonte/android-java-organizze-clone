@@ -27,7 +27,7 @@ public class DespesaActivity extends AppCompatActivity {
         fieldDesc = findViewById(R.id.editDesc);
         fieldValue = findViewById(R.id.editValue);
 
-        fieldDate.setText(new DateCustom().toString());
+        fieldDate.setText(new DateCustom().actualDate());
 
         btnSave = findViewById(R.id.fabSave);
 
