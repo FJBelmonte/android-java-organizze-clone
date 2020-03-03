@@ -65,6 +65,7 @@ public class MainActivity extends IntroActivity {
 
     public void UserExists() {
         auth = ConfigFirebase.getFirebaseAuth();
+        //auth.signOut();
         if (auth.getCurrentUser() != null) {
             NavigateHome();
         }
