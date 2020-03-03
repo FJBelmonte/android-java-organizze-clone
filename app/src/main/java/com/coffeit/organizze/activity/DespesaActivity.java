@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 import com.coffeit.organizze.R;
 import com.coffeit.organizze.helper.DateCustom;
-import com.github.clans.fab.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class DespesaActivity extends AppCompatActivity {
@@ -27,7 +27,7 @@ public class DespesaActivity extends AppCompatActivity {
         fieldDesc = findViewById(R.id.editDesc);
         fieldValue = findViewById(R.id.editValue);
 
-        fieldDate.setText(new DateCustom().actualDate());
+        fieldDate.setText(DateCustom.actualDate());
 
         btnSave = findViewById(R.id.fabSave);
 
