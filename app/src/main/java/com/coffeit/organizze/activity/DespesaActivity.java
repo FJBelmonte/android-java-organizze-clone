@@ -57,7 +57,7 @@ public class DespesaActivity extends AppCompatActivity {
                     financial.setCategory(fieldCategory.getText().toString());
                     financial.setDesc(fieldDesc.getText().toString());
                     financial.setDate(fieldDate.getText().toString());
-                    financial.setType("d");
+                    financial.setType("e");
                     finalExpense = fieldExpenseValue + totalExpense;
                     DatabaseReference userRef = firebaseRef.child("users").child(firebaseAuth.getCurrentUser().getUid());
                     userRef.child("expense").setValue(finalExpense);
