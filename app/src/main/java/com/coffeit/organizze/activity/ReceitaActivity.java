@@ -35,7 +35,7 @@ public class ReceitaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_despesa);
+        setContentView(R.layout.activity_receita);
 
         fieldDate = findViewById(R.id.editDate);
         fieldCategory = findViewById(R.id.editCategoy);
@@ -60,7 +60,7 @@ public class ReceitaActivity extends AppCompatActivity {
                     financial.setType("i");
                     finalIncome = fieldIncomeValue + totalIncome;
                     DatabaseReference userRef = firebaseRef.child("users").child(firebaseAuth.getCurrentUser().getUid());
-                    userRef.child("expense").setValue(finalIncome);
+                    userRef.child("income").setValue(finalIncome);
                     financial.save();
                 }
             }
