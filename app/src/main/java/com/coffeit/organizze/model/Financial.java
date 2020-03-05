@@ -23,7 +23,7 @@ public class Financial {
         firebase.child("financial")
                 .child(auth.getCurrentUser().getUid())
                 .child(DateCustom.formatDateMY(this.getDate()))
-                .push()
+                //.push()
                 .setValue(this);
 
     }
