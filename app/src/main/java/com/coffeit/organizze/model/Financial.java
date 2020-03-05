@@ -24,7 +24,7 @@ public class Financial {
                 .child(auth.getCurrentUser().getUid())
                 .child(this.getType().equals("e")?"expenses":"incomes")
                 .child(DateCustom.formatDateMY(this.getDate()))
-                //.push()
+                .push()
                 .setValue(this);
 
     }
