@@ -38,7 +38,7 @@ public class DespesaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_despesa);
 
         fieldDate = findViewById(R.id.editDate);
-        fieldCategory = findViewById(R.id.editCategoy);
+        fieldCategory = findViewById(R.id.editCategory);
         fieldDesc = findViewById(R.id.editDesc);
         fieldValue = findViewById(R.id.editValue);
         fieldDate.setText(DateCustom.actualDate());

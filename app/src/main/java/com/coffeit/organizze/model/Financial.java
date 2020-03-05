@@ -22,6 +22,7 @@ public class Financial {
 
         firebase.child("financial")
                 .child(auth.getCurrentUser().getUid())
+                .child(this.getType()=="e"?"expenses":"income")
                 .child(DateCustom.formatDateMY(this.getDate()))
                 //.push()
                 .setValue(this);
