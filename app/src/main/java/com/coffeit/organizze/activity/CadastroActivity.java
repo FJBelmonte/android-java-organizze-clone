@@ -38,6 +38,8 @@ public class CadastroActivity extends AppCompatActivity {
         password = findViewById(R.id.editPassword);
         cadastrar = findViewById(R.id.buttonCadastrar);
 
+        getSupportActionBar().setTitle("Cadastro");
+
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
