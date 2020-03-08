@@ -62,6 +62,7 @@ public class DespesaActivity extends AppCompatActivity {
                     DatabaseReference userRef = firebaseRef.child("users").child(firebaseAuth.getCurrentUser().getUid());
                     userRef.child("expense").setValue(finalExpense);
                     financial.save();
+                    finish();
                 }
             }
         });

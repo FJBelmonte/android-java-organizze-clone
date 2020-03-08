@@ -62,6 +62,7 @@ public class ReceitaActivity extends AppCompatActivity {
                     DatabaseReference userRef = firebaseRef.child("users").child(firebaseAuth.getCurrentUser().getUid());
                     userRef.child("income").setValue(finalIncome);
                     financial.save();
+                    finish();
                 }
             }
         });
