@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.coffeit.organizze.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,23 +28,27 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 
+import java.io.Console;
 import java.text.DecimalFormat;
 
 public class HomeActivity extends AppCompatActivity {
 
     private MaterialCalendarView calendarView;
     private TextView textWelcome, textTotal;
-    private FirebaseAuth auth;
-    private DatabaseReference databaseReference;
-    private Double totalExpense;
+    private DatabaseReference firebaseRef = ConfigFirebase.getDatabase();
+    private FirebaseAuth firebaseAuth = ConfigFirebase.getFirebaseAuth();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        calendarView.findViewById(R.id.calendarView);
-        textWelcome.findViewById(R.id.textWelcome);
-        textTotal.findViewById(R.id.textTotal);
-        databaseReference = ConfigFirebase.getDatabase();
-        auth = ConfigFirebase.getFirebaseAuth();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        calendarView = findViewById(R.id.calendarView);
+        textWelcome = findViewById(R.id.textWelcome);
+        textTotal = findViewById(R.id.textTotal);
+
         returnStatus();
 
         calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
@@ -52,18 +57,13 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.exit:
-                auth.signOut();
+                firebaseAuth.signOut();
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
                 break;
@@ -86,14 +86,18 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void returnStatus(){
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        DatabaseReference userRef = firebaseRef.child("users").child(firebaseAuth.getCurrentUser().getUid());
+
+        userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 User user = dataSnapshot.getValue(User.class);
+
                 DecimalFormat decimalFormat = new DecimalFormat("0.##");
                 Double total = user.getIncome() - user.getExpense();
 
-                textWelcome.setText("Olá, "+user.getName());
+                textWelcome.setText("Olá, "+ user.getName());
                 textTotal.setText(decimalFormat.format(total));
 
             }
