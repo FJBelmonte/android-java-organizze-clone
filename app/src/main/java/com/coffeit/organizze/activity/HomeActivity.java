@@ -37,6 +37,8 @@ public class HomeActivity extends AppCompatActivity {
     private TextView textWelcome, textTotal;
     private DatabaseReference firebaseRef = ConfigFirebase.getDatabase();
     private FirebaseAuth firebaseAuth = ConfigFirebase.getFirebaseAuth();
+    private DatabaseReference userRef;
+    private ValueEventListener valueEventListenerUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,6 @@ public class HomeActivity extends AppCompatActivity {
         textWelcome = findViewById(R.id.textWelcome);
         textTotal = findViewById(R.id.textTotal);
 
-        returnStatus();
 
         calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
@@ -57,6 +58,12 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        returnStatus();
     }
 
     @Override
@@ -85,10 +92,10 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(new Intent(this, ReceitaActivity.class));
     }
 
-    public void returnStatus(){
-        DatabaseReference userRef = firebaseRef.child("users").child(firebaseAuth.getCurrentUser().getUid());
+    public void returnStatus() {
+        userRef = firebaseRef.child("users").child(firebaseAuth.getCurrentUser().getUid());
 
-        userRef.addValueEventListener(new ValueEventListener() {
+        valueEventListenerUser = userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -97,7 +104,7 @@ public class HomeActivity extends AppCompatActivity {
                 DecimalFormat decimalFormat = new DecimalFormat("0.##");
                 Double total = user.getIncome() - user.getExpense();
 
-                textWelcome.setText("Olá, "+ user.getName());
+                textWelcome.setText("Olá, " + user.getName());
                 textTotal.setText(decimalFormat.format(total));
 
             }
@@ -107,5 +114,11 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        userRef.removeEventListener(valueEventListenerUser);
     }
 }
