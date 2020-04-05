@@ -3,7 +3,9 @@ package com.coffeit.organizze.activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.coffeit.organizze.adapter.AdapterFinancial;
 import com.coffeit.organizze.config.ConfigFirebase;
+import com.coffeit.organizze.model.Financial;
 import com.coffeit.organizze.model.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -11,6 +13,8 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +34,8 @@ import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 
 import java.io.Console;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -39,6 +45,9 @@ public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth = ConfigFirebase.getFirebaseAuth();
     private DatabaseReference userRef;
     private ValueEventListener valueEventListenerUser;
+    private RecyclerView recyclerView;
+    private AdapterFinancial adapterFinancial;
+    private List<Financial> financialList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +59,15 @@ public class HomeActivity extends AppCompatActivity {
         calendarView = findViewById(R.id.calendarView);
         textWelcome = findViewById(R.id.textWelcome);
         textTotal = findViewById(R.id.textTotal);
+        recyclerView = findViewById(R.id.recyclerView);
+
+        RecyclerView.LayoutManager layoutManeger = new LinearLayoutManager(this);
+
+        recyclerView.setLayoutManager(layoutManeger);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapterFinancial);
+
+        adapterFinancial = new AdapterFinancial(financialList, this);
 
 
         calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
